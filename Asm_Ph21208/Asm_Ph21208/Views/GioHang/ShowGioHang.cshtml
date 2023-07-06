@@ -1,0 +1,76 @@
+﻿@using Asm_Ph21208.Models;
+@model List<Asm_Ph21208.Models.CartDetails>;
+@{
+    ViewData["Title"] = "ShowGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ShoppingDbContext db = new ShoppingDbContext();
+    List<Product> Lstproduct = db.Products.ToList();
+}
+
+ <!-- Cart view section -->
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
+                      </tr>
+                    </thead>
+                @if (Model == null)
+                {
+                    
+
+                    <div class="center_title_bar">erorr</div>
+                }else{
+                    <tbody>
+                        @foreach (var item in Model)
+                                            {
+
+                          var product = Lstproduct.FirstOrDefault(c => c.ID == item.IdSP);                   
+                       <tr>
+                        <td><a class="remove" href="~/GioHang/XoaGioHang?id=@item.Id"><fa class="fa fa-close"></fa></a></td>
+                        <td><a href="#"><img src="~/img/@product.img" alt="img"></a></td>
+                        <td><a class="aa-cart-title" href="#">@product.Name</a></td>
+                        <td>@product.Price</td>
+                        <td><input class="aa-cart-quantity" type="number" value="@item.Quantity"></td>
+                        <td>@(product.Price*item.Quantity)</td>
+                      </tr>
+                      }
+                      <tr>
+                        <td colspan="6" class="aa-cart-view-bottom">
+                          <div class="aa-cart-coupon">
+                          </div>
+                          <input class="aa-cart-view-btn" type="submit" value="Cập nhật giỏ hàng">
+                        </td>
+                      </tr>
+                      
+                      </tbody>
+                      }
+                  </table>
+                </div>
+             </form>
+             <!-- Cart Total view -->
+             <div class="cart-view-total">
+               <table class="aa-totals-table">
+               </table>
+               <a href="~/MuaHang/MuaHang" class="aa-cart-view-btn">Thanh toán</a>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="modal-dialog">
+      <div class="modal-content">                      
+        <div class="modal-body">
+        <a type="close" class="close" href="~/Home/Index">&times;</a>
+          <h4>Mời bạn đăng nhập</h4>
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          <form class="aa-login-form" action="Login" method="post">
+            <label for="">Username or Email address<span>*</span></label>
+            <input type="text" placeholder="Username or email" name="userName1">
+            <label for="">Password<span>*</span></label>
+            <input type="password" placeholder="Password" name="passWord1">
+            <button class="aa-browse-btn" type="submit">Login</button>
+            
+            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+            <div class="aa-register-now">
+              Don't have an account?<a href="~/TaiKhoan/AddUser">Register now!</a>
+            </div>
+          </form>
+        </div>                        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->   

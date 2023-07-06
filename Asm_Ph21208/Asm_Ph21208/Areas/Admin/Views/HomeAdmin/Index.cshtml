@@ -1,0 +1,47 @@
+﻿@model List<Asm_Ph21208.Models.Product>
+@{
+    ViewData["Title"] = "Admin Home";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Dánh sách sản phẩm </h2>
+<a href="~/HomeAdmin/ThemMoi">Thêm</a>
+    <style type="text/css">
+        table, th, td{
+            border:1px solid black;
+        }
+        table{
+            border-collapse:collapse;
+        }
+    </style>
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Số lượng tồn</th>
+        <th>Trạng thái</th>
+        <th>Ảnh sản phẩm</th>
+        <th>NSX</th>
+        <th>Mô tả</th>
+        <th>Chức năng</th>
+    </tr>
+    @foreach(var item in Model){
+    <tr>
+        <th>@item.ID</th>
+        <th>@item.Name</th>
+        <th>@item.Price</th>
+        <th>@item.AvailableQuantity</th>
+        <th>@item.Status</th>
+        <th><img src="~/img/@item.img" wwidth="30px" height="30px"></th>
+        <th>@item.Supplier</th>
+        <th>@item.Description</th>
+        <th>
+            <a href="~/HomeAdmin/CapNhap?id=@item.ID" class="prod_buy">Sửa</a>
+            <a href="~/HomeAdmin/Xoa?id=@item.ID">Xóa</a>
+        </th>
+    </tr>
+    }
+    </table>
+

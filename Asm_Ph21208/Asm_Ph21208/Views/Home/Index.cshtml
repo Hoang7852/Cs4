@@ -1,0 +1,134 @@
+﻿@model List<Asm_Ph21208.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+  <!-- Start slider -->
+  <section id="aa-slider">
+    <div class="aa-slider-area">
+      <div id="sequence" class="seq">
+        <div class="seq-screen">
+          <ul class="seq-canvas">
+            <!-- single slide item -->
+            <li>
+              <div class="seq-model">
+                <img data-seq src="~/img/sldAnh1.jpg" alt="Men slide img" width="100%" height="100%"/>
+              </div>
+              <div class="seq-title">
+               <span data-seq>Save Up to 75% Off</span>                
+                <h2 data-seq>HELLO</h2>                
+                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
+                <a data-seq href="~/SanPham/ChiTiet" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+              </div>
+            </li>
+            <!-- single slide item -->
+            <li>
+              <div class="seq-model">
+                <img data-seq src="~/img/sldAnh2.jpg" alt="Wristwatch slide img" />
+              </div>
+              <div class="seq-title">
+                <span data-seq>Save Up to 40% Off</span>                
+                <h2 data-seq>HOÀNG NÈEEEE</h2>                
+                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
+                <a data-seq href="~/SanPham/ChiTiet" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+              </div>
+            </li>
+            <!-- single slide item -->
+            <li>
+              <div class="seq-model">
+                <img data-seq src="~/img/sldAnh3.jpg" alt="Women Jeans slide img" />
+              </div>
+              <div class="seq-title">
+                <span data-seq>Save Up to 75% Off</span>                
+                <h2 data-seq>MUA ÁO CHO CR ĐÊ</h2>                
+                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
+                <a data-seq href="~/SanPham/ChiTiet" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+              </div>
+            </li>
+            <!-- single slide item -->           
+            <li>
+              <div class="seq-model">
+                <img data-seq src="~/img/sldAnh4.jpg" alt="Shoes slide img" />
+              </div>
+              <div class="seq-title">
+                <span data-seq>Save Up to 75% Off</span>                
+                <h2 data-seq>BIBI</h2>                
+                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
+                <a data-seq href="~/SanPham/ChiTiet" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+              </div>
+            </li>
+            <!-- single slide item -->  
+             <li>
+              <div class="seq-model">
+                <img data-seq src="~/img/sldAnh5.jpg" alt="Male Female slide img" />
+              </div>
+              <div class="seq-title">
+                <span data-seq>Save Up to 50% Off</span>                
+                <h2 data-seq>Best Collection</h2>                
+                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
+                <a data-seq href="~/SanPham/ChiTiet" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+              </div>
+            </li>                   
+          </ul>
+        </div>
+        <!-- slider navigation btn -->
+        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
+          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
+          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
+        </fieldset>
+      </div>
+    </div>
+  </section>
+  <!-- / slider -->
+
+
+    <!-- Products section -->
+  <section id="aa-product-category">
+    <div class="container">
+      <div class="row">
+        
+          <div class="aa-product-catg-content">
+            <div class="aa-product-catg-body">
+              <ul class="aa-product-catg">
+                <!-- start single product item -->
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <li class="@((item.Status != 1) ? "aa-sold-out" : "")"  style="width: 100%; height: 100%; padding-bottom:100px">
+                          <figure>
+                            <a class="aa-product-img" href="~/SanPham/ChiTiet?id=@item.ID"><img src="~/img/@item.img" alt="polo shirt img" width="250px" height="300px"></a>
+                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="~/SanPham/ChiTiet?id=@item.ID">@item.Name</a></h4>
+                              <span class="aa-product-price">@item.Price</span><span class="aa-product-price">
+                                @if (item.Status == 1&&item.AvailableQuantity>0) {
+                                  <span>Còn hàng</span>
+                                } else {
+                                  <s>Hết hàng</s>
+                                }
+                              </span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            <a href="~/SanPham/ChiTiet" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            <a href="~/SanPham/ChiTiet" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                            <a href="~/SanPham/ChiTiet" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-                                        modal"><span class="fa fa-search"></span></a>                          
+                          </div>
+                          <!-- product badge -->
+                          <span class="aa-badge aa-sale" href="~/SanPham/ChiTiet">SALE!</span>
+                        </li>
+            
+            </div>
+            }
+
+                                               
+              </ul>            
+              <!-- / quick view modal -->   
+            </div>
+          </div>
+        </div>     
+      </div>
+    </div>
+  </section>
+  <!-- / Products section -->
